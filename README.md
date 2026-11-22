@@ -208,6 +208,3 @@ After submitting: The module disappears from the list after the confirmation, an
 
 
 
-
-
-## Problems faced & Solutions:
