@@ -16,18 +16,17 @@ Instructor: Aymane Nefdaoui
 
 ### Entities & Attributes:
 
-| Entity    | Attributs          |
-|-----------| -------------------|
-|formations | id, titre, niveau  |
-|-----------| -------------------|
-|etudiants  | id, nom, tel, email|
-|-----------| -------------------|
-|modules    | id, titre, heures  |
+| Entity    | Attributs          | Key |
+|-----------|--------------------|-----|
+|formations | id, titre, niveau  | id  |
+|-----------|--------------------|-----|
+|etudiants  | id, nom, tel, email| id  |
+|-----------|--------------------|-----|
+|modules    | id, titre, heures  | id  |
 
 
 ### Diagramm UML:  
-
-![digramme UML](image.png)
+![digramme UML](images\image.png)
 
 ## Data Base:
 
