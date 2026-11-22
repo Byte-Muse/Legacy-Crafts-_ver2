@@ -14,7 +14,7 @@ $nbModules = $pdo->query("SELECT COUNT(*) FROM module")->fetchColumn();
 
 ?>
  
- <?php //header: ?>
+ <?php //header: ?> <!--come back and replace the header by calling it + footer-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,7 +22,7 @@ $nbModules = $pdo->query("SELECT COUNT(*) FROM module")->fetchColumn();
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Legacy Crafts</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="C/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 
     </head>
 <body>
@@ -42,7 +42,7 @@ $nbModules = $pdo->query("SELECT COUNT(*) FROM module")->fetchColumn();
                     <a class="nav-link <?= ($active ?? "") === "home" ? "active" : "" ?>" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($active ?? "") === "formation" ? "active" : "" ?>" href="formation/index.php">Formations</a>
+                    <a class="nav-link <?= ($active ?? "") === "formation" ? "active" : "" ?>" href="formations/index.php">Formations</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($active ?? "") === "etudiant" ? "active" : "" ?>" href="etudiant/index.php">Students</a>

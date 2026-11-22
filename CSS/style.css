@@ -1,3 +1,109 @@
 body{
-    
+      background-image: url("../images/1045820344730172415.jfif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top; 
+    color:rgb(51, 25, 1);
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1, h2, h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 41);
+}
+
+main{
+    flex: 1;
+}
+
+
+.navbar-zellige { background-image: url(".../images/1045820344730172415.jfif") ; }
+.navbar-zellige .navbar-brand {
+    color: #a8452b;
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+.navbar-zellige .nav-link.active {
+    color:#a8452b;
+    font-family: Georgia, serif;
+    font-weight: 600;
+} 
+
+
+
+.btn-main {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+    color: #a8452b;
+}
+.btn-main:hover, .btn-main:focus {
+    background-color: #a8452b;
+    border-color: #a8452b;
+    color: #fff;
+}
+
+.hero {
+    background: #fff;
+    border-radius: 16px;
+    border-left: 8px solid rgb(0, 0, 41);
+    padding: 32px;
+    box-shadow: 0 6px 20px rgba(37, 74, 158, .08);
+}
+
+.entity-card {
+    background: #fff;
+    border: 1px solid #eadfc8;
+    border-radius: 16px;
+    padding: 28px 24px;
+    height: 100%;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.entity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(37, 74, 158, .15);
+}
+.entity-count {
+    font-family: Georgia, serif;
+    font-size: 3rem;
+    color: #a8452b;
+    line-height: 1;
+}
+
+/* Tables (lists of formations, students, modules) */
+.table thead th {
+    background-color: var(--blue);
+    color: #fff;
+    font-weight: 600;
+}
+.table-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eadfc8;
+    box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
+}
+
+/* Forms */
+.form-card {
+    background: #fff;
+    border: 1px solid #eadfc8;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 680px;
+    box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 .2rem rgba(37, 74, 158, .2);
+}
+
+.site-footer {
+    background-color: var(--blue-dark);
+    color: #d9e1f5;
+    font-size: .9rem;
 }
