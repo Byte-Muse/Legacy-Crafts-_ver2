@@ -1,11 +1,13 @@
 body{
-      background-image: url("../images/1045820344730172415.jfif");
+    background-image: url("../images/1045820344730172415.jfif");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top; 
     color:rgb(51, 25, 1);
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
 
@@ -19,7 +21,7 @@ main{
 }
 
 
-.navbar-zellige { background-image: url(".../images/1045820344730172415.jfif") ; }
+.navbar-zellige { background-color:rgb(0, 0, 41) ; }
 .navbar-zellige .navbar-brand {
     color: #a8452b;
     font-family: Georgia, serif;
@@ -32,40 +34,42 @@ main{
     font-weight: 600;
 } 
 
-
+.zellige-band{
+  
+}
 
 .btn-main {
-    background-color: var(--terracotta);
-    border-color: var(--terracotta);
+    background-color: rgb(0, 0, 41);
+    border-color: #a8452b;
     color: #a8452b;
 }
 .btn-main:hover, .btn-main:focus {
     background-color: #a8452b;
     border-color: #a8452b;
-    color: #fff;
+    color: rgb(0, 0, 41);
 }
 
 .hero {
-    background: #fff;
+    background: azure;
     border-radius: 16px;
     border-left: 8px solid rgb(0, 0, 41);
     padding: 32px;
-    box-shadow: 0 6px 20px rgba(37, 74, 158, .08);
+    box-shadow: 6px 6px 20px rgba(1, 54, 54, 0.263);
 }
 
 .entity-card {
-    background: #fff;
+    background: azure;
     border: 1px solid #eadfc8;
     border-radius: 16px;
     padding: 28px 24px;
     height: 100%;
     text-align: center;
-    box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
+    box-shadow: 6px 6px 20px rgba(1, 54, 54, 0.263);
     transition: transform .15s ease, box-shadow .15s ease;
 }
 .entity-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(37, 74, 158, .15);
+    box-shadow: 0 12px 28px rgba(1, 54, 54, 0.388);
 }
 .entity-count {
     font-family: Georgia, serif;
@@ -74,9 +78,8 @@ main{
     line-height: 1;
 }
 
-/* Tables (lists of formations, students, modules) */
 .table thead th {
-    background-color: var(--blue);
+    background-color:rgb(0, 0, 41);
     color: #fff;
     font-weight: 600;
 }
@@ -88,7 +91,7 @@ main{
     box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
 }
 
-/* Forms */
+
 .form-card {
     background: #fff;
     border: 1px solid #eadfc8;
@@ -98,12 +101,12 @@ main{
     box-shadow: 0 6px 20px rgba(37, 74, 158, .06);
 }
 .form-control:focus, .form-select:focus {
-    border-color: var(--blue);
+    border-color: rgb(0, 0, 41);
     box-shadow: 0 0 0 .2rem rgba(37, 74, 158, .2);
 }
 
 .site-footer {
-    background-color: var(--blue-dark);
+        background-color: rgb(0, 0, 41);
     color: #d9e1f5;
     font-size: .9rem;
 }

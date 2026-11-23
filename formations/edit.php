@@ -2,12 +2,12 @@
 require_once __DIR__ . "/../database/connexion.php";
 require_once __DIR__ . "/../includes/functions.php";
 
-$niveaux = ["Débutant", "Intermédiaire", "Avancé"];
+$niveaux = ["Beginner", "Intermediate", "Advanced"];
 
 $id = filter_var($_GET["id"] ?? null, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    setFlash("Identifiant de formation invalide.", "danger");
+    setFlash("ID invalide", "danger");
     header("Location: index.php");
     exit;
 }
@@ -17,7 +17,7 @@ $statement->execute(["id" => $id]);
 $formation = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!$formation) {
-    setFlash("Cette formation n'existe pas.", "danger");
+    setFlash("This Formation isn't a part of our program", "danger");
     header("Location: index.php");
     exit;
 }
@@ -32,12 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $niveau = $_POST["niveau"] ?? "";
 
     if ($titre === "") {
-        $errors[] = "Le titre est obligatoire.";
+        $errors[] = "The Title of the Formation is quite important, you see";
     } elseif (mb_strlen($titre) > 100) {
-        $errors[] = "Le titre ne doit pas dépasser 100 caractères.";
+        $errors[] = "Make sure the title is within the limit of 100 charcters";
     }
     if (!in_array($niveau, $niveaux, true)) {
-        $errors[] = "Veuillez choisir un niveau.";
+        $errors[] = "Choose a level";
     }
 
     if (empty($errors)) {
@@ -49,18 +49,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "id" => $id,
         ]);
 
-        setFlash("La formation « " . $titre . " » a bien été modifiée.");
+        setFlash("The Formation « " . $titre . " » was modified successfully");
         header("Location: index.php");
         exit;
     }
 }
 
-$pageTitle = "Modifier une formation";
+$pageTitle = "Modify a formation";
 $active = "formation";
 require_once __DIR__ . "/../includes/header.php";
 ?>
 
-<h1 class="mb-4">Modifier une formation</h1>
+<h1 class="mb-4">Modify a Formation</h1>
 
 <?php if (!empty($errors)) { ?>
     <div class="alert alert-danger">
@@ -74,23 +74,23 @@ require_once __DIR__ . "/../includes/header.php";
 <form method="POST" class="form-card">
 
     <div class="mb-3">
-        <label for="titre" class="form-label fw-semibold">Titre</label>
+        <label for="titre" class="form-label fw-semibold">Title</label>
         <input type="text" id="titre" name="titre" class="form-control" maxlength="100"
                value="<?= h($titre) ?>" required>
     </div>
 
     <div class="mb-4">
-        <label for="niveau" class="form-label fw-semibold">Niveau</label>
+        <label for="niveau" class="form-label fw-semibold">Level</label>
         <select id="niveau" name="niveau" class="form-select" required>
-            <option value="">Choisir un niveau</option>
+            <option value="">Choose a level</option>
             <?php foreach ($niveaux as $n) { ?>
                 <option value="<?= h($n) ?>" <?= $niveau === $n ? "selected" : "" ?>><?= h($n) ?></option>
             <?php } ?>
         </select>
     </div>
 
-    <button type="submit" class="btn btn-main">Enregistrer</button>
-    <a href="index.php" class="btn btn-outline-secondary">Annuler</a>
+    <button type="submit" class="btn btn-main">Save</button>
+    <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
 </form>
 
 <?php require_once __DIR__ . "/../includes/footer.php"; ?>

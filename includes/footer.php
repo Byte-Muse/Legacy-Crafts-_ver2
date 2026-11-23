@@ -1,5 +1,6 @@
 </main>
-<footer class="site-footer text-center py-3">
+<footer class="site-footer text-center py-3"> 
+    
     Legacy Crafts Center for Traditional Moroccan Arts and Workshops
 
 </footer>

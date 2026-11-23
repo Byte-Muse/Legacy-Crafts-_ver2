@@ -6,7 +6,7 @@ require_once __DIR__ . "/../includes/functions.php";
 $id = filter_var($_GET["id"] ?? null, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    setFlash("Identifiant de module invalide.", "danger");
+    setFlash("ID invalid", "danger");
     header("Location: index.php");
     exit;
 }
@@ -16,12 +16,12 @@ $statement->execute(["id" => $id]);
 $module = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!$module) {
-    setFlash("Ce module n'existe pas.", "danger");
+    setFlash("This Module doesn't exist", "danger");
     header("Location: index.php");
     exit;
 }
 
-$formations = $pdo->query("SELECT id, titre FROM formation ORDER BY titre")->fetchAll(PDO::FETCH_ASSOC);
+$formations = $pdo->query("SELECT id, titre FROM formations ORDER BY titre")->fetchAll(PDO::FETCH_ASSOC);
 $errors = [];
 $titre = $module["titre"];
 $heures = $module["heures"];
@@ -38,22 +38,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $formationId = filter_var($_POST["formation_id"] ?? null, FILTER_VALIDATE_INT);
 
     if ($titre === "") {
-        $errors[] = "Le titre est obligatoire.";
+        $errors[] = "The Title of the course is quite important, you see";
     } elseif (mb_strlen($titre) > 100) {
-        $errors[] = "Le titre ne doit pas dépasser 100 caractères.";
+        $errors[] = "Make sure the title is within the limit of 100 characters";
     }
 
     if ($heures === false) {
-        $errors[] = "Le nombre d'heures doit être un entier entre 1 et 500.";
+        $errors[] = "The number of hours of each course should be between 1 and 500, try not to travel back in time or add a module with an eternity to learn";
     }
 
     if (!$formationId) {
-        $errors[] = "Veuillez choisir une formation.";
+        $errors[] = "Please Choose a Formation";
     } else {
-        $check = $pdo->prepare("SELECT COUNT(*) FROM formation WHERE id = :id");
+        $check = $pdo->prepare("SELECT COUNT(*) FROM formations WHERE id = :id");
         $check->execute(["id" => $formationId]);
         if ($check->fetchColumn() == 0) {
-            $errors[] = "La formation choisie n'existe pas.";
+            $errors[] = "This formation doesn't exist yet, feel free to add it in Formations";
         }
     }
 
@@ -71,18 +71,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "id" => $id,
         ]);
 
-        setFlash("Le module « " . $titre . " » a bien été modifié.");
+        setFlash("The module « " . $titre . " » was modified successfully");
         header("Location: index.php");
         exit;
     }
 }
 
-$pageTitle = "Modifier un module";
+$pageTitle = "Modify a Module";
 $active = "module";
 require_once __DIR__ . "/../includes/header.php";
 ?>
 
-<h1 class="mb-4">Modifier un module</h1>
+<h1 class="mb-4">Modify a Module</h1>
 
 <?php if (!empty($errors)) { ?>
     <div class="alert alert-danger">
@@ -97,12 +97,12 @@ require_once __DIR__ . "/../includes/header.php";
 <form method="POST" class="form-card">
 
     <div class="mb-3">
-        <label for="titre" class="form-label fw-semibold">Titre du module</label>
+        <label for="titre" class="form-label fw-semibold">Title</label>
         <input type="text" id="titre" name="titre" class="form-control" maxlength="100" value="<?= h($titre) ?>" required>
     </div>
 
     <div class="mb-3">
-        <label for="heures" class="form-label fw-semibold">Heures d'étude</label>
+        <label for="heures" class="form-label fw-semibold">Hours </label>
         <input type="number" id="heures" name="heures" class="form-control" min="1" max="500"
                value="<?= h($heures === false ? "" : $heures) ?>" required>
     </div>
@@ -110,7 +110,7 @@ require_once __DIR__ . "/../includes/header.php";
     <div class="mb-4">
         <label for="formation_id" class="form-label fw-semibold">Formation</label>
         <select id="formation_id" name="formation_id" class="form-select" required>
-            <option value="">Choisir une formation</option>
+            <option value="">Choose a formation</option>
             <?php foreach ($formations as $formation) { ?>
                 <option value="<?= h($formation["id"]) ?>"
                     <?= (int) $formation["id"] === (int) $formationId ? "selected" : "" ?>>
@@ -120,8 +120,8 @@ require_once __DIR__ . "/../includes/header.php";
         </select>
     </div>
 
-    <button type="submit" class="btn btn-main">Enregistrer</button>
-    <a href="index.php" class="btn btn-outline-secondary">Annuler</a>
+    <button type="submit" class="btn btn-main">Save</button>
+    <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
 </form>
 
 <?php require_once __DIR__ . "/../includes/footer.php"; ?>

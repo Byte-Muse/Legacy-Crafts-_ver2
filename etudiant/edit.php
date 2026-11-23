@@ -5,7 +5,7 @@ require_once __DIR__ . "/../includes/functions.php";
 $id = filter_var($_GET["id"] ?? null, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    setFlash("Identifiant d'étudiant invalide.", "danger");
+    setFlash("ID invalid", "danger");
     header("Location: index.php");
     exit;
 }
@@ -15,7 +15,7 @@ $statement->execute(["id" => $id]);
 $etudiant = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!$etudiant) {
-    setFlash("Cet étudiant n'existe pas.", "danger");
+    setFlash("Oops, this student isn't ours", "danger");
     header("Location: index.php");
     exit;
 }
@@ -33,26 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $formationId = filter_var($_POST["formation_id"] ?? null, FILTER_VALIDATE_INT);
 
     if ($nom === "") {
-        $errors[] = "Le nom est obligatoire.";
+        $errors[] = "Adding the Name is quite important, you see";
     } elseif (mb_strlen($nom) > 100) {
-        $errors[] = "Le nom ne doit pas dépasser 100 caractères.";
+        $errors[] = "Make sure the name is within the limit of 100 charcter.";
     }
 
     if (!preg_match('/^\+?[0-9 ]{8,20}$/', $tel)) {
-        $errors[] = "Le téléphone est invalide (chiffres et espaces, avec + facultatif au début).";
+        $errors[] = "The tel is invalid";
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 100) {
-        $errors[] = "L'adresse email est invalide.";
+        $errors[] = "The Email is invalid";
     }
 
     if (!$formationId) {
-        $errors[] = "Veuillez choisir une formation.";
+        $errors[] = "Although we're happy to know you, Please choose a formation to properly enroll with us";
     } else {
-        $check = $pdo->prepare("SELECT COUNT(*) FROM formation WHERE id = :id");
+        $check = $pdo->prepare("SELECT COUNT(*) FROM formations WHERE id = :id");
         $check->execute(["id" => $formationId]);
         if ($check->fetchColumn() == 0) {
-            $errors[] = "La formation choisie n'existe pas.";
+            $errors[] = "Sorry, this formation isn't a part of program";
         }
     }
 
@@ -72,18 +72,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "id" => $id,
         ]);
 
-        setFlash("L'étudiant « " . $nom . " » a bien été modifié.");
+        setFlash("The Student « " . $nom . " » was modified successfully.");
         header("Location: index.php");
         exit;
     }
 }
 
-$pageTitle = "Modifier un étudiant";
+$pageTitle = "Modify a Student";
 $active = "etudiant";
 require_once __DIR__ . "/../includes/header.php";
 ?>
 
-<h1 class="mb-4">Modifier un étudiant</h1>
+<h1 class="mb-4">Modify a Student</h1>
 
 <?php if (!empty($errors)) { ?>
     <div class="alert alert-danger">
@@ -98,12 +98,12 @@ require_once __DIR__ . "/../includes/header.php";
 <form method="POST" class="form-card">
 
     <div class="mb-3">
-        <label for="nom" class="form-label fw-semibold">Nom complet</label>
+        <label for="nom" class="form-label fw-semibold">Full name</label>
         <input type="text" id="nom" name="nom" class="form-control" maxlength="100" value="<?= h($nom) ?>" required>
     </div>
 
     <div class="mb-3">
-        <label for="tel" class="form-label fw-semibold">Téléphone</label>
+        <label for="tel" class="form-label fw-semibold">Tel</label>
         <input type="tel" id="tel" name="tel" class="form-control" maxlength="20" value="<?= h($tel) ?>" required>
     </div>
 
@@ -125,8 +125,8 @@ require_once __DIR__ . "/../includes/header.php";
         </select>
     </div>
 
-    <button type="submit" class="btn btn-main">Enregistrer</button>
-    <a href="index.php" class="btn btn-outline-secondary">Annuler</a>
+    <button type="submit" class="btn btn-main">Save</button>
+    <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
 </form>
 
 <?php require_once __DIR__ . "/../includes/footer.php"; ?>

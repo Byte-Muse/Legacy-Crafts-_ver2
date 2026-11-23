@@ -31,9 +31,9 @@ CREATE TABLE module(
 )ENGINE=InnoDB;
 
 INSERT INTO formations (titre, niveau) VALUES
-    ('Mosaic', 'Begginner'),
+    ('Mosaic', 'Beginner'),
     ('Calligraphy', 'Intermediate'),
-    ('Potery', 'Begginnner'),
+    ('Potery', 'Beginner'),
     ('Carpet weaving', 'Advanced');
 
 INSERT INTO module (titre, heures, formation_id) VALUES

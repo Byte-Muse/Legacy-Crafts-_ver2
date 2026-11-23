@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $id = filter_var($_POST["id"] ?? null, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    setFlash("Identifiant de formation invalide.", "danger");
+    setFlash("ID invalid", "danger");
     header("Location: index.php");
     exit;
 }
@@ -19,13 +19,13 @@ try {
     $statement = $pdo->prepare("DELETE FROM formations WHERE id = :id");
     $statement->execute(["id" => $id]);
     if ($statement->rowCount() === 0) {
-        setFlash("Cette formation n'existe pas.", "danger");
+        setFlash("Sorry, we don't have this formation in our program", "danger");
     } else {
-        setFlash("La formation a bien été supprimée.");
+        setFlash("The Formation was deleted successfully ");
     }
 } catch (PDOException $e) {
     if ($e->getCode() == "23000") {
-        setFlash("Suppression impossible : cette formation contient encore des étudiants ou des modules.", "danger");
+        setFlash("Sorry, we can't delete this Formation just yet, there's students still enrolled in it", "danger");
     } else {
         throw $e;
     }
